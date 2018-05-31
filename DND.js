@@ -11,7 +11,8 @@ function loadUsers (){
             var response = JSON.parse(http.responseText);
             console.log(JSON.stringify(response));
 			clearBox("div1");
-			var tbl=$("<table/>").attr("name","mytable");
+            var tbl=$("<table/>").attr("id","mytable");
+            
             $("#div1").append(tbl);
             console.log(response.results.length);
 		    $("#mytable").append("<tr>" + "<th>ID</th>" + "</tr>");
@@ -24,7 +25,7 @@ function loadUsers (){
 			    	break;
 			    }
 			    var tr="<tr>";
-                var td1="<td>"+response.results[i]["name"]+"</td></tr>";
+                var td1="<td><a href=\""+ response.results[i]["url"] + "\">" + response.results[i]["name"] + "</a></td></tr>";
                 console.log(response.results[i]["name"]);
 		        count++;
 		       $("#mytable").append(tr+td1); 
