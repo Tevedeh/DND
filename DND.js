@@ -23,9 +23,11 @@ function loadUsers (){
 		    for (i = i; i < response.results.length; i++) {
 			    if(count == 10){
 			    	break;
-			    }
+				}
+				var value = 2;
 			    var tr="<tr>";
-                var td1="<td><a href=\""+ response.results[i]["url"] + "\">" + response.results[i]["name"] + "</a></td></tr>";
+				var td2="<td><a location=\""+ response.results[i]["url"] + "\">" + response.results[i]["name"] + "</a></td></tr>";
+				var td1 = "<td>" + buildQuery("", "Spell", "spell", i+1) + response.results[i]["name"] + "</a></td></tr>";
                 console.log(response.results[i]["name"]);
 		        count++;
 		       $("#mytable").append(tr+td1); 
@@ -34,6 +36,16 @@ function loadUsers (){
 	}
 	http.open("GET", url1 + url2, true);
 	http.send();
+}
+
+function buildQuery(directory, file, key1, val1){
+	//"<td><a href=\"Spell.html?spell="+ i + "\">" + response.results[i]["name"] + "</a></td></tr>";
+	if(directory === ""){
+		var send = "<a href=\"" + file + ".html?" + key1 + "=" + val1 + "\">";
+	}else{
+		var send = "<a href=\"" + directory + "/" + file + ".html?" + key1 + "=" + val1 + "\">";
+	}    
+    return send;
 }
 
 function getSpecificUser() {
