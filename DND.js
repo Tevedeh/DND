@@ -27,7 +27,7 @@ function loadUsers (){
 				var value = 2;
 			    var tr="<tr>";
 				var td2="<td><a location=\""+ response.results[i]["url"] + "\">" + response.results[i]["name"] + "</a></td></tr>";
-				var td1 = "<td>" + buildQuery("", "Spell", "spell", i+1) + response.results[i]["name"] + "</a></td></tr>";
+				var td1 = "<td>" + buildQuery("", "spell", "spell", i+1) + response.results[i]["name"] + "</a></td></tr>";
                 console.log(response.results[i]["name"]);
 		        count++;
 		       $("#mytable").append(tr+td1); 

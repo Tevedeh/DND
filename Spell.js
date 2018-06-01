@@ -1,26 +1,53 @@
 var i = 0;
 var j = 0;
-var url1 = "http://www.dnd5eapi.co/api/classes/";
+var url1 = "http://www.dnd5eapi.co/api/spells/";
 var url2 = "";
 
-function loadUsers(class_){
-    url2 = class_;
-    console.log(url1+url2);
+var qsParm = new Array();
+var x;
+
+var name ="";
+var range = "";
+var page = "";
+var duartion = "";
+
+
+function response(url, callback){
 	var http = new XMLHttpRequest();
 	http.onreadystatechange = function(){
-        console.log(http.readyState);
 		if(http.readyState == 4){
-            var response = JSON.parse(http.responseText);
-            console.log(JSON.stringify(response));
+            callback(JSON.parse(http.responseText));
 			}
 		}
 	
-	http.open("GET", url1 + url2, true);
-	http.send();
+	http.open("GET", url, true);
+    http.send();
 }
 
-var qsParm = new Array();
-function qs() {
+$(document).ready(function(){
+    
+    getQueryParam();
+    response(load);
+
+    
+    $("#but1").click(function(){
+    });
+});
+
+function load(json){
+    $("#div1").text(JSON.stringify(json));
+}
+
+function parse(){
+    
+}
+
+function urlBuilder(){
+    
+}
+
+function getQueryParam() {
+    var send = "";
 	var query = window.location.search.substring(1);
 	console.log(query);
     var parms = query.split('&');
@@ -32,8 +59,6 @@ function qs() {
             qsParm[key] = val;
         }
     }
-    console.log(qsParm["spell"]);
-    console.log(qsParm["hi"]);
 }
 
 function buildQuery(directory, file, key1, val1){
