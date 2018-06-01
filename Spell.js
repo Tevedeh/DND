@@ -27,7 +27,7 @@ function response(url, callback){
 $(document).ready(function(){
     
     getQueryParam();
-    response(load);
+    response(urlBuilder("spell"), load);
 
     
     $("#but1").click(function(){
@@ -35,15 +35,17 @@ $(document).ready(function(){
 });
 
 function load(json){
-    $("#div1").text(JSON.stringify(json));
+    $("#div1").text(json["name"]);
+    $("#div2").text(json["desc"]);
+    $("#div3").text(json["duration"]);
 }
 
 function parse(){
     
 }
 
-function urlBuilder(){
-    
+function urlBuilder(key){
+    return url1 + qsParm[key];
 }
 
 function getQueryParam() {
