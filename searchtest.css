@@ -3,7 +3,7 @@
   }
   
   #myInput {
-    background-image: url('/css/searchicon.png');
+   /* background-image: url('/css/searchicon.png'); */
     background-position: 10px 12px;
     background-repeat: no-repeat;
     width: 100%;
@@ -12,14 +12,18 @@
     border: 1px solid #ddd;
     margin-bottom: 12px;
   }
+
+  .big{
+      font-size: 72px;
+  }
   
-  #myUL {
+  #mytable {
     list-style-type: none;
     padding: 0;
     margin: 0;
   }
   
-  #myUL li a {
+  #mytable li a {
     border: 1px solid #ddd;
     margin-top: -1px; /* Prevent double borders */
     background-color: #f6f6f6;
@@ -30,6 +34,6 @@
     display: block
   }
   
-  #myUL li a:hover:not(.header) {
+  #mytable li a:hover:not(.header) {
     background-color: #eee;
   }

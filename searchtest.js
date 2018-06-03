@@ -28,74 +28,54 @@ function loadUsers (){
  					i=0;
  				}
 		    for (i = i; i < response.results.length; i++) {
+                /*
 			    if(count == 10){
 			    	break;
-				}
+                }
+                */
 				var value = 2;
 			    var tr="<tr>";
-				var td2="<td><a location=\""+ response.results[i]["url"] + "\">" + response.results[i]["name"] + "</a></td></tr>";
-				var td1 = "<td>" + buildQuery("", "spell", "spell", i+1) + response.results[i]["name"] + "</a></td></tr>";
+				var li="<li>" + buildQuery(".", "spell", "spell", i+1) + response.results[i]["name"] + "</a></li>";
                 console.log(response.results[i]["name"]);
 		        count++;
-		       $("#mytable").append(tr+td1); 
-			}
+		       $("#mytable").append(li); 
+            }
+            $("#mytable").append("</ul>"); 
 		}
 	}
 	http.open("GET", url1 + url2, true);
 	http.send();
 }
 
-
-
-
-function response(url, callback){
-	var http = new XMLHttpRequest();
-	http.onreadystatechange = function(){
-		if(http.readyState == 4){
-            callback(JSON.parse(http.responseText));
-			}
-		}
-	
-	http.open("GET", url, true);
-    http.send();
+function buildQuery(directory, file, key1, val1){
+	//"<td><a href=\"Spell.html?spell="+ i + "\">" + response.results[i]["name"] + "</a></td></tr>";
+	if(directory === ""){
+		var send = "<a href=\"" + file + ".html?" + key1 + "=" + val1 + "\">";
+	}else{
+		var send = "<a href=\"" + directory + "/" + file + ".html?" + key1 + "=" + val1 + "\">";
+	}    
+    return send;
 }
 
-$(document).ready(function(){
-    
-    getQueryParam();
-    response(urlBuilder("spell"), load);
+function myFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("mytable");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
 
-    
-    $("#but1").click(function(){
-    });
-});
-
-function load(json){
-    $("#div1").text(json["name"]);
-    $("#div2").text(json["desc"]);
-    $("#div3").text(json["duration"]);
-    document.title = "Easy DND: " + json["name"];
-}
-
-function parse(){
-    
-}
-
-function urlBuilder(key){
-    return url1 + qsParm[key];
-}
-
-function getQueryParam() {
-    var send = "";
-	var query = window.location.search.substring(1);
-	console.log(query);
-    var parms = query.split('&');
-    for (var i=0; i < parms.length; i++) {
-        var pos = parms[i].indexOf('=');
-        if (pos > 0) {
-            var key = parms[i].substring(0, pos);
-            var val = parms[i].substring(pos + 1);
-            qsParm[key] = val;
         }
     }
+}
+
+
+function clearBox(elementID)
+{
+    document.getElementById(elementID).innerHTML = "";
 }
