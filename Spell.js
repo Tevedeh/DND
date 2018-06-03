@@ -38,6 +38,7 @@ function load(json){
     $("#div1").text(json["name"]);
     $("#div2").text(json["desc"]);
     $("#div3").text(json["duration"]);
+    document.title = "Easy DND: " + json["name"];
 }
 
 function parse(){
@@ -61,11 +62,4 @@ function getQueryParam() {
             qsParm[key] = val;
         }
     }
-}
-
-function buildQuery(directory, file, key1, val1){
-    //"<td><a href=\"Spell.html?spell="+ i + "\">" + response.results[i]["name"] + "</a></td></tr>";
-    var send = "<a href=\"" + directory + "/" + file + ".html?" + key1 + "=" + val1 + "\">";
-    
-    return send;
 }
