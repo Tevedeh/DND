@@ -36,7 +36,7 @@ $(document).ready(function(){
 
 function load(json){
     $("#div1").text(json["name"]);
-    $("#div2").text(json["desc"]);
+    $("#div2").text(str);
     $("#div3").text(json["duration"]);
     document.title = "Easy DND: " + json["name"];
 }
